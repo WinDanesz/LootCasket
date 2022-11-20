@@ -1,6 +1,5 @@
 
 # Loot Casket &nbsp; [![Build Mod](https://github.com/WinDanesz/LootCasket/actions/workflows/gradle.yml/badge.svg)](https://github.com/WinDanesz/LootCasket/actions/workflows/gradle.yml) [![Curseforge](http://cf.way2muchnoise.eu/full_loot-casket_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/loot-casket) [![Curseforge](http://cf.way2muchnoise.eu/versions/608287.svg)](http://www.curseforge.com/minecraft/mc-mods/loot-casket/files) [![Discord](https://img.shields.io/discord/544897694448091146?color=7289DA&label=Discord)](https://discord.gg/wuSsgKwAKv)
-A library mod for addon devs for the Electroblob's Wizardry Minecraft mod.
 
 Loot Casket is a 1.12.2 Minecraft mod, adding the Small Casket item into the game.
 

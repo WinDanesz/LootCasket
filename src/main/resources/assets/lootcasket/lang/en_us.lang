@@ -1,0 +1,4 @@
+# Generic
+settings.lootcasket:general_settings=General Settings
+item.lootcasket:small_casket.name=Small Casket
+item.lootcasket:small_casket.desc=Right-Click to open

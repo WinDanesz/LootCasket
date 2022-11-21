@@ -102,18 +102,23 @@ public class ItemCasket extends Item {
 							}
 						}
 					}
+
 				}
 				stack.shrink(1);
 				return stack;
-			} else if (nbt.hasKey("ItemStack")) {
-				ItemStack itemStack = new ItemStack(nbt.getCompoundTag("ItemStack"));
-				if (itemStack != null && itemStack != ItemStack.EMPTY) {
+			} else if (nbt.hasKey("Items")) {
+				int TYPE_COMPOUND = 10;
+				NBTTagList nbttaglist = nbt.getTagList("Items", TYPE_COMPOUND);
+
+				for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+					NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
+					ItemStack itemStack = new ItemStack(nbttagcompound);
 					if (!((EntityPlayer) entityLiving).addItemStackToInventory(itemStack)) {
 						((EntityPlayer) entityLiving).dropItem(itemStack, true);
 					}
-					stack.shrink(1);
-					return stack;
 				}
+				stack.shrink(1);
+				return stack;
 			}
 		}
 

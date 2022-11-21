@@ -1,5 +1,6 @@
 package com.windanesz.lootcasket;
 
+import com.windanesz.lootcasket.command.CommandDumpItem;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -44,5 +45,7 @@ public class LootCasket {
 	public void postInit(FMLPostInitializationEvent event) { }
 
 	@EventHandler
-	public void serverStartup(FMLServerStartingEvent event) { }
+	public void serverStarting(FMLServerStartingEvent event) {
+		event.registerServerCommand(new CommandDumpItem());
+	}
 }

@@ -2,3 +2,4 @@
 settings.lootcasket:general_settings=General Settings
 item.lootcasket:small_casket.name=Small Casket
 item.lootcasket:small_casket.desc=Right-Click to open
+commands.lootcasket:lcdumpitem.usage=Hold an item in your main-hand and run this command to get the item's ItemStack NBT format printed to the chat

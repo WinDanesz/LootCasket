@@ -9,6 +9,7 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
@@ -70,7 +71,10 @@ public class ItemCasket extends Item {
 		if (!world.isRemote && entityLiving instanceof EntityPlayer && stack.hasTagCompound()) {
 			NBTTagCompound nbt = stack.getTagCompound();
 
+			//noinspection ConstantConditions
 			if (nbt.hasKey("LootTable")) {
+
+				int rolls = nbt.hasKey("Rolls") ? nbt.getInteger("Rolls") : 1;
 
 				String loottable = nbt.getString("LootTable");
 				LootTable table = world.getLootTableManager().getLootTableFromLocation(new ResourceLocation(loottable));
@@ -80,18 +84,22 @@ public class ItemCasket extends Item {
 
 				LootContext context = new LootContext.Builder((WorldServer) world).withPlayer((EntityPlayer) entityLiving).withLuck(0).build();
 				if (nbt.hasKey("Pool")) {
-					List<ItemStack> artefact = new ArrayList<>();
-					table.getPool(nbt.getString("Pool")).generateLoot(artefact, world.rand, context);
+					for (int i = 0; i < rolls; i++) {
+						List<ItemStack> item = new ArrayList<>();
+						table.getPool(nbt.getString("Pool")).generateLoot(item, world.rand, context);
 
-					for (ItemStack itemStack : artefact) {
-						if (!((EntityPlayer) entityLiving).addItemStackToInventory(itemStack)) {
-							((EntityPlayer) entityLiving).dropItem(itemStack, true);
+						for (ItemStack itemStack : item) {
+							if (!((EntityPlayer) entityLiving).addItemStackToInventory(itemStack)) {
+								((EntityPlayer) entityLiving).dropItem(itemStack, true);
+							}
 						}
 					}
 				} else {
-					for (ItemStack itemStack : table.generateLootForPools(world.rand, context)) {
-						if (!((EntityPlayer) entityLiving).addItemStackToInventory(itemStack)) {
-							((EntityPlayer) entityLiving).dropItem(itemStack, true);
+					for (int i = 0; i < rolls; i++) {
+						for (ItemStack itemStack : table.generateLootForPools(world.rand, context)) {
+							if (!((EntityPlayer) entityLiving).addItemStackToInventory(itemStack)) {
+								((EntityPlayer) entityLiving).dropItem(itemStack, true);
+							}
 						}
 					}
 				}

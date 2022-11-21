@@ -1,9 +1,11 @@
-<h2>Version v1.1.1 - 10/30/2022</h2>
+<h2>Version v1.0.1 - 11/21/2022</h2>
 <p>&nbsp;</p>
 <h3>What's Changed</h3>
 <p><span style="font-size: 1.2rem;">&nbsp;</span></p>
 <h4><strong>Features</strong></h4>
-<p>- Some more helper methods</p>
+<p>- /lcdumpitem command - dumps the nbt format of the item in your mainhand</p>
+<p>- Added support for a new (optional) "Rolls" tag. Specifying it with a LootTable will cause the casket to roll the loottable multiple times, e.g. "Rolls": 5 will give you 5x the loot of the table, randomly each time.</p>
+<p>- Removed the "ItemStack" tag, replaced with the "Items" tag. "Items" can be a list of ItemStacks in an nbt-serialized format.</p>
 <p>&nbsp;</p>
 <p>As always, the easiest way to get help or feedback is through the Discord server! Find the link on the CurseForge page.</p>
 <p>&nbsp;</p>
